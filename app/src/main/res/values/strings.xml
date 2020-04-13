@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">activityTracker</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="option1">option1</string>
+    <string name="option2">option2</string>
+    <string name="option3">option3</string>
+    <string name="option4">option4</string>
+    <string name="optionWriteIn">Submit</string>
 </resources>
