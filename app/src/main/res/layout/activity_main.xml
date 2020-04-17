@@ -26,10 +26,18 @@
         android:layout_gravity="center"
         android:foregroundGravity="center|center_horizontal" />
 
-    <fragment android:name="com.example.activitytracker.eventFragment"
-        android:id="@+id/optionsView"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent" />
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+    </FrameLayout>
+
 
 </LinearLayout>

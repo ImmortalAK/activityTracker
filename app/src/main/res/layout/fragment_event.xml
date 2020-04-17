@@ -7,19 +7,18 @@
     android:orientation="vertical"
     tools:context=".eventFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/selectedD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="" />
+        android:layout_gravity="center" />
 
     <Button
         android:id="@+id/option1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:onClick="displayToastMsg"
+        android:onClick="onClick"
         android:text="@string/option1"
         tools:text="@string/option1" />
 
