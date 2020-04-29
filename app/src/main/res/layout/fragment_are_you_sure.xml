@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_are_you_sure"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2196F3"
+    android:orientation="vertical"
+    tools:context=".AreYouSure">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:id="@+id/AreYouSure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4DC3FF"
+        android:gravity="center"
+        android:text="Would you like to delete this?"
+        android:textColor="#000000"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#4DC3FF"
+        tools:context=".AreYouSure">
+
+        <Button
+            android:id="@+id/yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#B3FFEC"
+            android:backgroundTintMode="src_atop"
+            android:onClick="onClick"
+            android:text="Yes" />
+
+        <Button
+            android:id="@+id/no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#B3FFEC"
+            android:backgroundTintMode="src_atop"
+            android:onClick="onClick"
+            android:text="Cancel" />
+    </LinearLayout>
+
+</LinearLayout>

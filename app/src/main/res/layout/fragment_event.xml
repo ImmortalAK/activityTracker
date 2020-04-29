@@ -4,6 +4,7 @@
     android:id="@+id/eventFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4DC3FF"
     android:orientation="vertical"
     tools:context=".eventFragment">
 
@@ -11,41 +12,65 @@
         android:id="@+id/selectedD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Select an activity"
+        android:textColor="#000000"
+        android:textSize="24sp" />
 
-    <Button
-        android:id="@+id/option1"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:onClick="onClick"
-        android:text="@string/option1"
-        tools:text="@string/option1" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/option2"
+        <Button
+            android:id="@+id/option1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#B3FFEC"
+            android:backgroundTintMode="src_atop"
+            android:onClick="onClick"
+            android:text="@string/option1"
+            tools:text="@string/option1" />
+
+        <Button
+            android:id="@+id/option2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#B3FFEC"
+            android:backgroundTintMode="src_atop"
+            android:onClick="onClick"
+            android:text="@string/option2"
+            tools:text="@string/option2" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:onClick="onClick"
-        android:text="@string/option2"
-        tools:text="@string/option2" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/option3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:onClick="onClick"
-        android:text="@string/option3" />
+        <Button
+            android:id="@+id/option3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#B3FFEC"
+            android:backgroundTintMode="src_atop"
+            android:onClick="onClick"
+            android:text="@string/option3" />
 
-    <Button
-        android:id="@+id/option4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:onClick="onClick"
-        android:text="@string/option4" />
+        <Button
+            android:id="@+id/option4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#B3FFEC"
+            android:backgroundTintMode="src_atop"
+            android:onClick="onClick"
+            android:text="@string/option4" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/editTextWriteIn"
@@ -60,6 +85,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:backgroundTint="#B3FFEC"
+        android:backgroundTintMode="src_atop"
         android:onClick="onClick"
         android:text="@string/optionWriteIn" />
 

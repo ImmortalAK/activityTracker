@@ -13,6 +13,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.EditText;
@@ -27,6 +29,10 @@ public class MainActivity extends FragmentActivity {
     private CalendarView mCalendarView;
     DatabaseHelper mDatabaseHelper;
     eventFragment optionsFrag = new eventFragment();
+    AreYouSure yesOrNo = new AreYouSure();
+    boolean eventFragmentOpen = false;
+    static String ID = new String();
+    static boolean AreYouSure = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,7 @@ public class MainActivity extends FragmentActivity {
         ListView listView = (ListView) findViewById(R.id.listView);
         //populate an ArrayList<String> from the database and then view it
         ArrayList<String> theList = new ArrayList<>();
+        final ArrayList<String> ids = new ArrayList<String>();
         Cursor data = mDatabaseHelper.getListContents();
         if(data.getCount() == 0){
             Toast.makeText(this, "The Database was empty.", Toast.LENGTH_LONG).show();
@@ -46,8 +53,28 @@ public class MainActivity extends FragmentActivity {
                 theList.add(data.getString(1) + "/" + data.getString(2) + "/" + data.getString(3) + ": " + data.getString(4));
                 ListAdapter listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, theList);
                 listView.setAdapter(listAdapter);
+                ids.add(data.getString(0));
             }
         }
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ID = ids.get(position);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                if(AreYouSure == false){
+                    AreYouSure = true;
+                    fragmentTransaction.add(R.id.container,yesOrNo);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                }
+                else {
+                    AreYouSure = false;
+                    fragmentTransaction.remove(yesOrNo);
+                    fragmentTransaction.commit();
+                }
+            }
+        });
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
@@ -59,11 +86,19 @@ public class MainActivity extends FragmentActivity {
                 t.show();
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.container,optionsFrag);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                if (eventFragmentOpen == false) {
+                    eventFragmentOpen = true;
+                    fragmentTransaction.add(R.id.container, optionsFrag);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                } else {
+                    eventFragmentOpen = false;
+                    fragmentTransaction.remove(optionsFrag);
+                    fragmentTransaction.commit();
+                }
             }
         });
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
     public void onClick(View v) {
         switch (v.getId()){
@@ -199,6 +234,65 @@ public class MainActivity extends FragmentActivity {
                         listView4.setAdapter(listAdapter);
                     }
                 }
+                break;
+            case R.id.About:
+                Intent intent = new Intent(this, about.class);
+                startActivity(intent);
+                break;
+            case R.id.yes:
+                Toast.makeText(this, "Row Removed", Toast.LENGTH_SHORT).show();
+
+                mDatabaseHelper.deleteRow(ID);
+                FragmentManager manager5 = getSupportFragmentManager();
+                FragmentTransaction transaction5 = manager5.beginTransaction();
+                transaction5.remove(yesOrNo);
+                transaction5.addToBackStack(null);
+                transaction5.commit();
+
+                ListView listView5 = (ListView) findViewById(R.id.listView);
+                ArrayList<String> theList5 = new ArrayList<>();
+                Cursor data5 = mDatabaseHelper.getListContents();
+                if(data5.getCount() == 0){
+                    Toast.makeText(this, "The Database was empty.", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    while (data5.moveToNext()) {
+                        theList5.add(data5.getString(1) + "/" + data5.getString(2) + "/" + data5.getString(3) + ": " + data5.getString(4));
+                        ListAdapter listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, theList5);
+                        listView5.setAdapter(listAdapter);
+                    }
+                }
+                break;
+            case R.id.no:
+                Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT).show();
+
+                FragmentManager manager6 = getSupportFragmentManager();
+                FragmentTransaction transaction6 = manager6.beginTransaction();
+                transaction6.remove(yesOrNo);
+                transaction6.addToBackStack(null);
+                transaction6.commit();
+
+                ListView listView6 = (ListView) findViewById(R.id.listView);
+                ArrayList<String> theList6 = new ArrayList<>();
+                Cursor data6 = mDatabaseHelper.getListContents();
+                if(data6.getCount() == 0){
+                    Toast.makeText(this, "The Database was empty.", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    while (data6.moveToNext()) {
+                        theList6.add(data6.getString(1) + "/" + data6.getString(2) + "/" + data6.getString(3) + ": " + data6.getString(4));
+                        ListAdapter listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, theList6);
+                        listView6.setAdapter(listAdapter);
+                    }
+                }
+                break;
+            case R.id.ShowByDay:
+                if(optionsFrag.month != 0) {
+                    intent = new Intent(this, dayTotal.class);
+                    startActivity(intent);
+                }
+                else
+                    Toast.makeText(this, "Please Selected a Day", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

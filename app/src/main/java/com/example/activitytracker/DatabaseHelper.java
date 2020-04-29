@@ -63,4 +63,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor data = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
         return data;
     }
+    public void deleteRow(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL(" DELETE FROM " + TABLE_NAME + " WHERE " + COL1 + "=\"" + id + "\";");
+    }
+    public Cursor getDay(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL2 + "= ?" + " AND " + COL3 + "= ?" + " AND " + COL4 + "= ?", new String[] {String.valueOf(eventFragment.month), String.valueOf(eventFragment.day), String.valueOf(eventFragment.year)});
+        return data;
+    }
 }

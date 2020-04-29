@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#802196F3"
+    android:background="#4DC3FF"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -24,8 +24,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="#2196F3"
+        android:background="#80DFFF"
         android:foregroundGravity="center|center_horizontal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#802196F3"
+        tools:context=".MainActivity">
+
+        <Button
+            android:id="@+id/About"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#B3FFEC"
+            android:backgroundTintMode="src_atop"
+            android:onClick="onClick"
+            android:padding="2px"
+            android:paddingTop="2px"
+            android:paddingBottom="2px"
+            android:text="About" />
+
+        <Button
+            android:id="@+id/ShowByDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#B3FFEC"
+            android:backgroundTintMode="src_atop"
+            android:onClick="onClick"
+            android:padding="2px"
+            android:paddingTop="2px"
+            android:paddingBottom="2px"
+            android:text="Show by day" />
+
+
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/container"
@@ -35,9 +69,7 @@
         <ListView
             android:id="@+id/listView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </ListView>
+            android:layout_height="match_parent" />
     </FrameLayout>
 
 
